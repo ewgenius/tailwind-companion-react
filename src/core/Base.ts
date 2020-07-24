@@ -12,18 +12,23 @@ export interface BaseProps<E extends HTMLElement> extends HTMLAttributes<E> {
 
 export interface BasePropsWithAs<E extends HTMLElement> extends BaseProps<E> {
   as?: keyof ReactHTML;
+  defaultAs?: keyof ReactHTML;
 }
 
 export const Base = <P extends HTMLAttributes<E>, E extends HTMLElement>({
   as,
+  defaultAs,
   children,
   className,
   classNames,
   ...restProps
 }: PropsWithChildren<BasePropsWithAs<E> & ClassAttributes<E>>) => {
   const props = {
-    className: (className ? `${className} ` : "") + classNames?.join(" "),
+    className:
+      (className ? `${className} ` : "") +
+        (classNames ? classNames.join(" ") : "") || null,
     ...restProps,
   } as ClassAttributes<E> & P;
-  return React.createElement<P, E>(as || "div", props, children);
+  console.log(props);
+  return React.createElement<P, E>(as || defaultAs || "div", props, children);
 };
