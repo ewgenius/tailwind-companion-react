@@ -29,6 +29,5 @@ export const Base = <P extends HTMLAttributes<E>, E extends HTMLElement>({
         (classNames ? classNames.join(" ") : "") || null,
     ...restProps,
   } as ClassAttributes<E> & P;
-  console.log(props);
   return React.createElement<P, E>(as || defaultAs || "div", props, children);
 };

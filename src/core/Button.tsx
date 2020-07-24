@@ -1,6 +1,6 @@
-import React, { PropsWithChildren, useContext } from "react";
+import React, { PropsWithChildren } from "react";
 import { Base, BaseProps } from "./Base";
-import { ThemeContext } from "./Provider";
+import { ThemeComponent, useThemePreset } from "./Provider";
 
 export interface ButtonProps extends BaseProps<HTMLButtonElement> {
   variant?: string;
@@ -11,10 +11,7 @@ export const Button = ({
   variant,
   ...restProps
 }: PropsWithChildren<ButtonProps>) => {
-  const context = useContext(ThemeContext);
-  const classes =
-    (variant && context.presets.button[variant]) ||
-    context.presets.button.default;
+  const classes = useThemePreset(ThemeComponent.Button, variant);
   return (
     <Base as="button" className={classes} {...restProps}>
       {children}
