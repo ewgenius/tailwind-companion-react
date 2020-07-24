@@ -9,6 +9,14 @@ export const AsDiv = (props?: Partial<BaseProps<HTMLDivElement>>) => (
   <Base {...props}>test Base</Base>
 );
 
+export const AsDivWithUtilityProperties = (
+  props?: Partial<BaseProps<HTMLDivElement>>
+) => (
+  <Base className="bg-red-400" py={8} px={4} ml={2} mt={4} {...props}>
+    test Base
+  </Base>
+);
+
 export const AsButton = (props?: Partial<BaseProps<HTMLButtonElement>>) => (
   <Base as="button" onClick={() => console.log("click")} {...props}>
     test Base

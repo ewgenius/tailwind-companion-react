@@ -15,7 +15,7 @@ export const Default = (props?: Partial<ButtonProps>) => (
 
 export const WithOverridedClass = (props?: Partial<ButtonProps>) => (
   <Button
-    className="border p-2 rounded-lg"
+    className="border p-4 rounded-lg"
     onClick={action("click")}
     {...props}
   >
