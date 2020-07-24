@@ -14,7 +14,11 @@ export const Default = (props?: Partial<ButtonProps>) => (
 );
 
 export const WithOverridedClass = (props?: Partial<ButtonProps>) => (
-  <Button className="btn" onClick={action("click")} {...props}>
+  <Button
+    className="border p-2 rounded-lg"
+    onClick={action("click")}
+    {...props}
+  >
     default button
   </Button>
 );
