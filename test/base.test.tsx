@@ -2,7 +2,7 @@ import React from "react";
 import * as ReactDOM from "react-dom";
 import { AsDiv } from "../stories/Base.stories";
 
-describe("Thing", () => {
+describe("Base", () => {
   it("renders without crashing", () => {
     const div = document.createElement("div");
     ReactDOM.render(<AsDiv />, div);
