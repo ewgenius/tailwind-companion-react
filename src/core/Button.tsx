@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from "react";
 import { Base, BaseProps } from "./Base";
-import { ThemeComponent, useThemePreset } from "./Provider";
+import { ThemeComponent, useThemePreset } from "../theme";
 
 export interface ButtonProps extends BaseProps<HTMLButtonElement> {
   variant?: string;
