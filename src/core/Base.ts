@@ -22,7 +22,7 @@ export const Base = <P extends HTMLAttributes<E>, E extends HTMLElement>({
   ...restProps
 }: PropsWithChildren<BasePropsWithAs<E> & ClassAttributes<E>>) => {
   const props = {
-    className: className || classNames?.join(" ") || null,
+    className: (className ? `${className} ` : "") + classNames?.join(" "),
     ...restProps,
   } as ClassAttributes<E> & P;
   return React.createElement<P, E>(as || "div", props, children);

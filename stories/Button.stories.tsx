@@ -13,15 +13,20 @@ export const Default = (props?: Partial<ButtonProps>) => (
   </Button>
 );
 
-export const WithClass = (props?: Partial<ButtonProps>) => (
+export const WithOverridedClass = (props?: Partial<ButtonProps>) => (
   <Button className="btn" onClick={action("click")} {...props}>
     test button
   </Button>
 );
 
-export const WithClasses = (props?: Partial<ButtonProps>) => (
+export const WithCustomClasses = (props?: Partial<ButtonProps>) => (
   <Button
-    classNames={["btn", "btn-primary"]}
+    classNames={[
+      "text-gray-200",
+      "bg-red-600",
+      "hover:bg-red-700",
+      "active:bg-red-800",
+    ]}
     onClick={action("click")}
     {...props}
   >
