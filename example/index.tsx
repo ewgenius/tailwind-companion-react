@@ -10,8 +10,8 @@ import {
   Typography,
   Theme,
   ThemeComponent,
-  Base,
-  BaseProps,
+  Box,
+  BoxProps,
 } from "../src";
 
 const theme: Theme = {
@@ -55,45 +55,48 @@ const WeeklyChart = () => (
   </div>
 );
 
-export interface ContainerProps extends BaseProps<HTMLDivElement> { }
+export interface ContainerProps extends BoxProps<HTMLDivElement> {}
 
-export const Container = ({ children, ...restProps }: React.PropsWithChildren<ContainerProps>) => (
-  <Base as="div" className="container mx-auto" {...restProps}>{children}</Base>
+export const Container = ({
+  children,
+  ...restProps
+}: React.PropsWithChildren<ContainerProps>) => (
+  <Box as="div" className="container mx-auto" {...restProps}>
+    {children}
+  </Box>
 );
 
-export interface FlexProps extends BaseProps<HTMLDivElement> {
-  direction: "row" | "col";
-  grow?: boolean
-}
-
-export const Flex = ({ children, direction, grow, ...restProps }: React.PropsWithChildren<FlexProps>) => {
-  return (
-    <Base as="div" className={`flex ${direction === "col" ? "flex-col" : "flex-row"}${grow ? " flex-grow" : ""}`} {...restProps}>{children}</Base>
-  )
-}
-
 const App = () => {
+  const [state, setState] = React.useState(false);
+  if (!state) {
+    return <button onClick={() => setState(true)}>render</button>;
+  }
   return (
     <ThemeProvider theme={theme}>
-      <Container pt={2} px={2} classNames={["min-h-screen flex flex-col"]}>
-        <Flex direction="row">
-          <Flex direction="col" grow mr={2}>
-            <Card mb={2} classNames={["flex-grow"]}>
+      <Container
+        pt={2}
+        px={2}
+        flex="col"
+        classNames={["min-h-screen max-w-md"]}
+      >
+        <Box flex>
+          <Box flex="col" grow mr={2}>
+            <Card grow mb={2}>
               <Typography>Card balance</Typography>
               <Typography variant="header">123,45 $</Typography>
               <Typography variant="secondary">Available 876,55</Typography>
             </Card>
-            <Card classNames={["flex-grow"]}>
+            <Card grow>
               <Typography>Week activity</Typography>
               <WeeklyChart />
             </Card>
-          </Flex>
-          <Card classNames={["flex-grow", "flex", "flex-col"]}>
+          </Box>
+          <Card grow flex="col">
             <Typography>Payment Due in</Typography>
             <Typography variant="header">6 Days</Typography>
             <Button variant="inverted">Pay</Button>
           </Card>
-        </Flex>
+        </Box>
       </Container>
     </ThemeProvider>
   );

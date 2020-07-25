@@ -28,10 +28,10 @@ export interface FlexProps {
   grow?: boolean;
   justify?: "start" | "center" | "end" | "between" | "around";
   content?: "start" | "center" | "end" | "between" | "around";
-  items?: "stretch" | "start" | "center" | "end" | "baseline";
+  items?: "stretch" | "start" | "center" | "end" | "Boxline";
 }
 
-export interface BaseProps<E extends HTMLElement>
+export interface BoxProps<E extends HTMLElement>
   extends HTMLAttributes<E>,
     SpacingProps,
     FlexProps {
@@ -39,7 +39,7 @@ export interface BaseProps<E extends HTMLElement>
   classNames?: string[];
 }
 
-export interface BasePropsWithAs<E extends HTMLElement> extends BaseProps<E> {
+export interface BoxPropsWithAs<E extends HTMLElement> extends BoxProps<E> {
   as?: keyof ReactHTML;
   defaultAs?: keyof ReactHTML;
 }
@@ -56,7 +56,7 @@ function getUtilClasses(dict: {
   }, []);
 }
 
-export const Base = <P extends HTMLAttributes<E>, E extends HTMLElement>({
+export const Box = <P extends HTMLAttributes<E>, E extends HTMLElement>({
   as,
   defaultAs,
   children,
@@ -84,7 +84,7 @@ export const Base = <P extends HTMLAttributes<E>, E extends HTMLElement>({
   content,
   items,
   ...restProps
-}: PropsWithChildren<BasePropsWithAs<E> & ClassAttributes<E>>) => {
+}: PropsWithChildren<BoxPropsWithAs<E> & ClassAttributes<E>>) => {
   const classes = classnames(
     className,
     classNames,

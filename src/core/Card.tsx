@@ -1,10 +1,10 @@
 import React, { PropsWithChildren } from "react";
-import { Base, BaseProps } from "./Base";
+import { Box, BoxProps } from "./Box";
 import { WithVariant, ThemeComponent, useThemePreset } from "../theme";
 
-export interface CardProps extends BaseProps<HTMLDivElement>, WithVariant {}
+export interface CardProps extends BoxProps<HTMLDivElement>, WithVariant {}
 
-export interface CardProps extends BaseProps<HTMLDivElement> {}
+export interface CardProps extends BoxProps<HTMLDivElement> {}
 
 export const Card = ({
   children,
@@ -12,8 +12,8 @@ export const Card = ({
 }: PropsWithChildren<CardProps>) => {
   const classes = useThemePreset(ThemeComponent.Card);
   return (
-    <Base className={classes} {...restProps}>
+    <Box className={classes} {...restProps}>
       {children}
-    </Base>
+    </Box>
   );
 };
