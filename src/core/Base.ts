@@ -4,8 +4,9 @@ import React, {
   ReactHTML,
   ClassAttributes,
 } from "react";
+import classnames from "classnames";
 
-export interface TailwindSpacingProps {
+export interface SpacingProps {
   p?: number;
   px?: number;
   py?: number;
@@ -22,9 +23,18 @@ export interface TailwindSpacingProps {
   mr?: number;
 }
 
+export interface FlexProps {
+  flex?: boolean | "row" | "col";
+  grow?: boolean;
+  justify?: "start" | "center" | "end" | "between" | "around";
+  content?: "start" | "center" | "end" | "between" | "around";
+  items?: "stretch" | "start" | "center" | "end" | "baseline";
+}
+
 export interface BaseProps<E extends HTMLElement>
   extends HTMLAttributes<E>,
-    TailwindSpacingProps {
+    SpacingProps,
+    FlexProps {
   className?: string;
   classNames?: string[];
 }
@@ -34,16 +44,16 @@ export interface BasePropsWithAs<E extends HTMLElement> extends BaseProps<E> {
   defaultAs?: keyof ReactHTML;
 }
 
-function getUtilClasses(dict: { [cls: string]: number | undefined }): string {
-  return Object.keys(dict)
-    .reduce((arr: string[], cls) => {
-      const value = dict[cls];
-      if (value !== undefined) {
-        return [...arr, `${cls}-${value}`];
-      }
-      return arr;
-    }, [])
-    .join(" ");
+function getUtilClasses(dict: {
+  [cls: string]: number | string | undefined;
+}): string[] {
+  return Object.keys(dict).reduce((arr: string[], cls) => {
+    const value = dict[cls];
+    if (value !== undefined) {
+      return [...arr, `${cls}-${value}`];
+    }
+    return arr;
+  }, []);
 }
 
 export const Base = <P extends HTMLAttributes<E>, E extends HTMLElement>({
@@ -52,6 +62,7 @@ export const Base = <P extends HTMLAttributes<E>, E extends HTMLElement>({
   children,
   className,
   classNames,
+  // spacing
   p,
   px,
   py,
@@ -66,31 +77,47 @@ export const Base = <P extends HTMLAttributes<E>, E extends HTMLElement>({
   mb,
   ml,
   mr,
+  // flex
+  flex,
+  grow,
+  justify,
+  content,
+  items,
   ...restProps
 }: PropsWithChildren<BasePropsWithAs<E> & ClassAttributes<E>>) => {
-  const classes =
-    (className ? `${className} ` : "") +
-    (classNames ? classNames.join(" ") : "");
-
-  const utilClasses = getUtilClasses({
-    p,
-    px,
-    py,
-    pt,
-    pb,
-    pl,
-    pr,
-    m,
-    mx,
-    my,
-    mt,
-    mb,
-    ml,
-    mr,
-  });
+  const classes = classnames(
+    className,
+    classNames,
+    {
+      flex: !!flex,
+      "flex-col": flex === "col",
+      "flex-row": flex && flex !== "row",
+      "flex-grow": grow,
+      "flex-grow-0": grow === false,
+    },
+    getUtilClasses({
+      p,
+      px,
+      py,
+      pt,
+      pb,
+      pl,
+      pr,
+      m,
+      mx,
+      my,
+      mt,
+      mb,
+      ml,
+      mr,
+      justify,
+      content,
+      items,
+    })
+  );
 
   const props = {
-    className: classes + (utilClasses ? ` ${utilClasses}` : "") || null,
+    className: classes,
     ...restProps,
   } as ClassAttributes<E> & P;
   return React.createElement<P, E>(as || defaultAs || "div", props, children);

@@ -54,7 +54,7 @@ export const WithCustomTheme = (props?: Partial<ButtonProps>) => (
       },
     }}
   >
-    <Button onClick={action("click")} classNames={["mb-2"]} {...props}>
+    <Button onClick={action("click")} mb={2} {...props}>
       default button
     </Button>
     <Button variant="primary" onClick={action("click")} {...props}>
@@ -65,22 +65,25 @@ export const WithCustomTheme = (props?: Partial<ButtonProps>) => (
 
 export const WithIcon = (props?: Partial<ButtonProps>) => (
   <>
-    <Button classNames={["flex", "justify-center", "items-center"]} mb={2}>
+    <Button flex justify="center" items="center" mb={2}>
       <Icon icon={<PlusCircle size={20} />} />
     </Button>
 
-    <Button classNames={["flex", "justify-center", "items-center"]} mb={2}>
+    <Button flex justify="center" items="center" mb={2}>
       <Icon icon={<PlusCircle size={20} />} mr={1} />
       Icons left
     </Button>
 
-    <Button classNames={["flex", "justify-center", "items-center"]} mb={2}>
+    <Button flex justify="center" items="center" mb={2}>
       Icon right
       <Icon icon={<PlusCircle size={20} />} ml={1} />
     </Button>
 
     <Button
-      classNames={["flex", "justify-center", "items-center", "text-red-600"]}
+      flex
+      justify="center"
+      items="center"
+      classNames={["text-red-600"]}
       mb={2}
     >
       <Icon icon={<PlusCircle size={20} />} mr={1} />

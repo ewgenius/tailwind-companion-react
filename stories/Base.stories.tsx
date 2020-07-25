@@ -12,8 +12,10 @@ export const AsDiv = (props?: Partial<BaseProps<HTMLDivElement>>) => (
 export const AsDivWithUtilityProperties = (
   props?: Partial<BaseProps<HTMLDivElement>>
 ) => (
-  <Base className="bg-red-400" py={8} px={4} ml={2} mt={4} {...props}>
-    test Base
+  <Base className="bg-red-400 w-20" flex py={8} px={4} ml={2} mt={4} {...props}>
+    <Base grow={false}>1</Base>
+    <Base grow>2</Base>
+    <div>3</div>
   </Base>
 );
 
