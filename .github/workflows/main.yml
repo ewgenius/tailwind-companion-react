@@ -40,3 +40,27 @@ jobs:
         run: yarn build
         env:
           CI: true
+
+  npm-publish:
+    name: npm-publish
+    runs-on: ubuntu-latest
+    if: success() && github.ref == 'refs/heads/master'
+
+    steps:
+      - name: Begin CI...
+        uses: actions/checkout@v2
+
+      - name: Use Node 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Publish if version has been updated
+        uses: pascalgn/npm-publish-action@v1.3.1
+        with:
+          tag_name: "v%s"
+          tag_message: "v%s"
+          workspace: "."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
