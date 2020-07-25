@@ -1,5 +1,6 @@
 import React from "react";
-import { Button, ButtonProps, ThemeContext, defaultTheme } from "../src";
+import { Button, Icon, ButtonProps, ThemeContext, defaultTheme } from "../src";
+import { PlusCircle } from "react-feather";
 
 import { action } from "@storybook/addon-actions";
 
@@ -59,4 +60,30 @@ export const WithCustomTheme = (props?: Partial<ButtonProps>) => (
       primary button
     </Button>
   </ThemeContext.Provider>
+);
+
+export const WithIcon = (props?: Partial<ButtonProps>) => (
+  <div className="flex flex-col justify-center  items-center">
+    <Button classNames={["flex", "justify-center", "items-center"]} mb={2}>
+      <Icon icon={<PlusCircle size={20} />} />
+    </Button>
+
+    <Button classNames={["flex", "justify-center", "items-center"]} mb={2}>
+      <Icon icon={<PlusCircle size={20} />} mr={1} />
+      Icons left
+    </Button>
+
+    <Button classNames={["flex", "justify-center", "items-center"]} mb={2}>
+      Icon right
+      <Icon icon={<PlusCircle size={20} />} ml={1} />
+    </Button>
+
+    <Button
+      classNames={["flex", "justify-center", "items-center", "text-red-600"]}
+      mb={2}
+    >
+      <Icon icon={<PlusCircle size={20} />} mr={1} />
+      Colored
+    </Button>
+  </div>
 );
