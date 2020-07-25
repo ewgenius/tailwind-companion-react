@@ -78,7 +78,7 @@ const App = () => {
       <Container pt={2} px={2} classNames={["min-h-screen flex flex-col"]}>
         <Flex direction="row">
           <Flex direction="col" grow mr={2}>
-            <Card classNames={["mb-2", "flex-grow"]}>
+            <Card mb={2} classNames={["flex-grow"]}>
               <Typography>Card balance</Typography>
               <Typography variant="header">123,45 $</Typography>
               <Typography variant="secondary">Available 876,55</Typography>
