@@ -8,23 +8,17 @@ export default {
   title: "Button",
 };
 
-export const Default = (props?: Partial<ButtonProps>) => (
-  <Button onClick={action("click")} {...props}>
+export const Default = () => (
+  <Button onClick={action("click")}>default button</Button>
+);
+
+export const WithOverridedClass = () => (
+  <Button className="border p-4 rounded-lg" onClick={action("click")}>
     default button
   </Button>
 );
 
-export const WithOverridedClass = (props?: Partial<ButtonProps>) => (
-  <Button
-    className="border p-4 rounded-lg"
-    onClick={action("click")}
-    {...props}
-  >
-    default button
-  </Button>
-);
-
-export const WithCustomClasses = (props?: Partial<ButtonProps>) => (
+export const WithCustomClasses = () => (
   <Button
     classNames={[
       "text-gray-200",
@@ -33,13 +27,12 @@ export const WithCustomClasses = (props?: Partial<ButtonProps>) => (
       "active:bg-red-800",
     ]}
     onClick={action("click")}
-    {...props}
   >
     default button
   </Button>
 );
 
-export const WithCustomTheme = (props?: Partial<ButtonProps>) => (
+export const WithCustomTheme = () => (
   <ThemeProvider
     theme={{
       ...defaultTheme,
@@ -54,16 +47,16 @@ export const WithCustomTheme = (props?: Partial<ButtonProps>) => (
       },
     }}
   >
-    <Button onClick={action("click")} mb={2} {...props}>
+    <Button onClick={action("click")} mb={2}>
       default button
     </Button>
-    <Button variant="primary" onClick={action("click")} {...props}>
+    <Button variant="primary" onClick={action("click")}>
       primary button
     </Button>
   </ThemeProvider>
 );
 
-export const WithIcon = (props?: Partial<ButtonProps>) => (
+export const WithIcon = () => (
   <>
     <Button flex justify="center" items="center" mb={2}>
       <Icon icon={<PlusCircle size={20} />} />
