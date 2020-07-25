@@ -11,10 +11,12 @@ export interface Theme {
     textSecondary: ThemeValue;
   };
   presets: {
-    button: ComponentPreset;
+    [ThemeComponent.Button]: ComponentPreset;
+    [ThemeComponent.Typography]: ComponentPreset;
   };
 }
 
 export enum ThemeComponent {
   Button = "button",
+  Typography = "typography",
 }

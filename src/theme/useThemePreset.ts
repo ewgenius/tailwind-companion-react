@@ -4,7 +4,7 @@ import { ThemeContext } from "./ThemeProvider";
 
 export const getPreset = (
   theme: Theme,
-  component: ThemeComponent.Button,
+  component: ThemeComponent,
   variant = "default"
 ): string => {
   const value = theme.presets[component][variant];
@@ -18,7 +18,7 @@ export const getPreset = (
 };
 
 export const useThemePreset = (
-  component: ThemeComponent.Button,
+  component: ThemeComponent,
   variant = "default"
 ) => {
   const theme = useContext(ThemeContext);
