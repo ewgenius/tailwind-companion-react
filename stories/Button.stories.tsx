@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Icon, ButtonProps, ThemeContext, defaultTheme } from "../src";
+import { Button, Icon, ButtonProps, ThemeProvider, defaultTheme } from "../src";
 import { PlusCircle } from "react-feather";
 
 import { action } from "@storybook/addon-actions";
@@ -40,10 +40,11 @@ export const WithCustomClasses = (props?: Partial<ButtonProps>) => (
 );
 
 export const WithCustomTheme = (props?: Partial<ButtonProps>) => (
-  <ThemeContext.Provider
-    value={{
+  <ThemeProvider
+    theme={{
       ...defaultTheme,
       presets: {
+        ...defaultTheme.presets,
         button: {
           default:
             "py-2 px-4 bg-gray-200 text-bold border hover:bg-gray-300 active:bg-gray-400 focus:outline-none focus:shadow-outline",
@@ -53,17 +54,17 @@ export const WithCustomTheme = (props?: Partial<ButtonProps>) => (
       },
     }}
   >
-    <Button onClick={action("click")} classNames={["mr-2"]} {...props}>
+    <Button onClick={action("click")} classNames={["mb-2"]} {...props}>
       default button
     </Button>
     <Button variant="primary" onClick={action("click")} {...props}>
       primary button
     </Button>
-  </ThemeContext.Provider>
+  </ThemeProvider>
 );
 
 export const WithIcon = (props?: Partial<ButtonProps>) => (
-  <div className="flex flex-col justify-center  items-center">
+  <>
     <Button classNames={["flex", "justify-center", "items-center"]} mb={2}>
       <Icon icon={<PlusCircle size={20} />} />
     </Button>
@@ -85,5 +86,5 @@ export const WithIcon = (props?: Partial<ButtonProps>) => (
       <Icon icon={<PlusCircle size={20} />} mr={1} />
       Colored
     </Button>
-  </div>
+  </>
 );

@@ -1,10 +1,10 @@
 import React, { PropsWithChildren } from "react";
 import { Base, BaseProps } from "./Base";
-import { ThemeComponent, useThemePreset } from "../theme";
+import { ThemeComponent, useThemePreset, WithVariant } from "../theme";
 
-export interface ButtonProps extends BaseProps<HTMLButtonElement> {
-  variant?: string;
-}
+export interface ButtonProps
+  extends BaseProps<HTMLButtonElement>,
+    WithVariant {}
 
 export const Button = ({
   children,

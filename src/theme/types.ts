@@ -20,3 +20,7 @@ export enum ThemeComponent {
   Button = "button",
   Typography = "typography",
 }
+
+export interface WithVariant<T = string> {
+  variant?: "default" | T;
+}
