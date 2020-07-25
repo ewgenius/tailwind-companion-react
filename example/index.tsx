@@ -10,6 +10,8 @@ import {
   Typography,
   Theme,
   ThemeComponent,
+  Base,
+  BaseProps,
 } from "../src";
 
 const theme: Theme = {
@@ -53,12 +55,29 @@ const WeeklyChart = () => (
   </div>
 );
 
+export interface ContainerProps extends BaseProps<HTMLDivElement> { }
+
+export const Container = ({ children, ...restProps }: React.PropsWithChildren<ContainerProps>) => (
+  <Base as="div" className="container mx-auto" {...restProps}>{children}</Base>
+);
+
+export interface FlexProps extends BaseProps<HTMLDivElement> {
+  direction: "row" | "col";
+  grow?: boolean
+}
+
+export const Flex = ({ children, direction, grow, ...restProps }: React.PropsWithChildren<FlexProps>) => {
+  return (
+    <Base as="div" className={`flex ${direction === "col" ? "flex-col" : "flex-row"}${grow ? " flex-grow" : ""}`} {...restProps}>{children}</Base>
+  )
+}
+
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <div className="container mx-auto min-h-screen max-w-md pt-2 px-2 flex flex-col">
-        <div className="flex flex-row">
-          <div className="flex flex-col mr-2 flex-grow">
+      <Container pt={2} px={2} classNames={["min-h-screen flex flex-col"]}>
+        <Flex direction="row">
+          <Flex direction="col" grow mr={2}>
             <Card classNames={["mb-2", "flex-grow"]}>
               <Typography>Card balance</Typography>
               <Typography variant="header">123,45 $</Typography>
@@ -68,15 +87,14 @@ const App = () => {
               <Typography>Week activity</Typography>
               <WeeklyChart />
             </Card>
-          </div>
-
+          </Flex>
           <Card classNames={["flex-grow", "flex", "flex-col"]}>
             <Typography>Payment Due in</Typography>
             <Typography variant="header">6 Days</Typography>
             <Button variant="inverted">Pay</Button>
           </Card>
-        </div>
-      </div>
+        </Flex>
+      </Container>
     </ThemeProvider>
   );
 };
