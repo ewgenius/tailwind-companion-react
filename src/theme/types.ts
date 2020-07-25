@@ -13,12 +13,14 @@ export interface Theme {
   presets: {
     [ThemeComponent.Button]: ComponentPreset;
     [ThemeComponent.Typography]: ComponentPreset;
+    [ThemeComponent.Card]: ComponentPreset;
   };
 }
 
 export enum ThemeComponent {
   Button = "button",
   Typography = "typography",
+  Card = "card",
 }
 
 export interface WithVariant<T = string> {

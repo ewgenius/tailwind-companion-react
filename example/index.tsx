@@ -6,8 +6,7 @@ import {
   Button,
   ThemeProvider,
   defaultTheme,
-  Base,
-  BaseProps,
+  Card,
   Typography,
   Theme,
   ThemeComponent,
@@ -29,15 +28,6 @@ const theme: Theme = {
     },
   },
 };
-
-const Card = ({
-  children,
-  ...restProps
-}: React.PropsWithChildren<BaseProps<HTMLDivElement>>) => (
-  <Base className="bg-white rounded-lg py-2 px-4" {...restProps}>
-    {children}
-  </Base>
-);
 
 const WeeklyChart = () => (
   <div className="flex flex-row justify-between mt-2">
