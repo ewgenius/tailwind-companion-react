@@ -35,6 +35,11 @@
   },
   "name": "tailwind-companion-react",
   "description": "Small set of base components to boost your work with Tailwind CSS and React",
+  "keywords": [
+    "react",
+    "tailwindcss",
+    "uikit"
+  ],
   "author": "Evgenii Khramkov",
   "module": "dist/tailwind-companion-react.esm.js",
   "devDependencies": {
