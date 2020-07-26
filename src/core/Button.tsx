@@ -1,10 +1,8 @@
 import React, { PropsWithChildren } from "react";
-import { Base, BaseProps } from "./Base";
+import { Box, BoxProps } from "./Box";
 import { ThemeComponent, useThemePreset, WithVariant } from "../theme";
 
-export interface ButtonProps
-  extends BaseProps<HTMLButtonElement>,
-    WithVariant {}
+export interface ButtonProps extends BoxProps<HTMLButtonElement>, WithVariant {}
 
 export const Button = ({
   children,
@@ -13,8 +11,8 @@ export const Button = ({
 }: PropsWithChildren<ButtonProps>) => {
   const classes = useThemePreset(ThemeComponent.Button, variant);
   return (
-    <Base as="button" className={classes} {...restProps}>
+    <Box as="button" className={classes} {...restProps}>
       {children}
-    </Base>
+    </Box>
   );
 };

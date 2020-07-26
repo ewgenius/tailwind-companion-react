@@ -1,10 +1,10 @@
 import React from "react";
 import { PropsWithChildren } from "react";
-import { BasePropsWithAs, Base } from "./Base";
+import { BoxPropsWithAs, Box } from "./Box";
 import { useThemePreset, ThemeComponent, WithVariant } from "../theme";
 
 export interface TypographyProps
-  extends BasePropsWithAs<
+  extends BoxPropsWithAs<
       HTMLParagraphElement | HTMLHeadingElement | HTMLSpanElement
     >,
     WithVariant {}
@@ -17,8 +17,8 @@ export const Typography = ({
 }: PropsWithChildren<TypographyProps>) => {
   const classes = useThemePreset(ThemeComponent.Typography, variant);
   return (
-    <Base as={as} className={classes} defaultAs="p" {...restProps}>
+    <Box as={as} className={classes} defaultAs="p" {...restProps}>
       {children}
-    </Base>
+    </Box>
   );
 };

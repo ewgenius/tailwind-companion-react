@@ -10,17 +10,11 @@ export default {
   title: "Typography",
 };
 
-export const Default = (props?: Partial<TypographyProps>) => (
-  <Typography {...props}>test Typography</Typography>
-);
+export const Default = () => <Typography>test Typography</Typography>;
 
-export const AsH1 = (props?: Partial<TypographyProps>) => (
-  <Typography as="h1" {...props}>
-    test Typography
-  </Typography>
-);
+export const AsH1 = () => <Typography as="h1">test Typography</Typography>;
 
-export const WithCustomTheme = (props?: Partial<TypographyProps>) => (
+export const WithCustomTheme = () => (
   <ThemeProvider
     theme={{
       ...defaultTheme,

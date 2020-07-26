@@ -13,5 +13,8 @@ export const defaultTheme: Theme = {
     [ThemeComponent.Typography]: {
       default: "",
     },
+    [ThemeComponent.Card]: {
+      default: "bg-white rounded-lg py-2 px-4",
+    },
   },
 };

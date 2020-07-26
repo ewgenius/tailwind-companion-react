@@ -6,11 +6,12 @@ import {
   Button,
   ThemeProvider,
   defaultTheme,
-  Base,
-  BaseProps,
+  Card,
   Typography,
   Theme,
   ThemeComponent,
+  Box,
+  BoxProps,
 } from "../src";
 
 const theme: Theme = {
@@ -29,15 +30,6 @@ const theme: Theme = {
     },
   },
 };
-
-const Card = ({
-  children,
-  ...restProps
-}: React.PropsWithChildren<BaseProps<HTMLDivElement>>) => (
-  <Base className="bg-white rounded-lg py-2 px-4" {...restProps}>
-    {children}
-  </Base>
-);
 
 const WeeklyChart = () => (
   <div className="flex flex-row justify-between mt-2">
@@ -63,30 +55,49 @@ const WeeklyChart = () => (
   </div>
 );
 
+export interface ContainerProps extends BoxProps<HTMLDivElement> {}
+
+export const Container = ({
+  children,
+  ...restProps
+}: React.PropsWithChildren<ContainerProps>) => (
+  <Box as="div" className="container mx-auto" {...restProps}>
+    {children}
+  </Box>
+);
+
 const App = () => {
+  const [state, setState] = React.useState(false);
+  if (!state) {
+    return <button onClick={() => setState(true)}>render</button>;
+  }
   return (
     <ThemeProvider theme={theme}>
-      <div className="container mx-auto min-h-screen max-w-md pt-2 px-2 flex flex-col">
-        <div className="flex flex-row">
-          <div className="flex flex-col mr-2 flex-grow">
-            <Card classNames={["mb-2", "flex-grow"]}>
+      <Container
+        pt={2}
+        px={2}
+        flex="col"
+        classNames={["min-h-screen max-w-md"]}
+      >
+        <Box flex>
+          <Box flex="col" grow mr={2}>
+            <Card grow mb={2}>
               <Typography>Card balance</Typography>
               <Typography variant="header">123,45 $</Typography>
               <Typography variant="secondary">Available 876,55</Typography>
             </Card>
-            <Card classNames={["flex-grow"]}>
+            <Card grow>
               <Typography>Week activity</Typography>
               <WeeklyChart />
             </Card>
-          </div>
-
-          <Card classNames={["flex-grow", "flex", "flex-col"]}>
+          </Box>
+          <Card grow flex="col">
             <Typography>Payment Due in</Typography>
             <Typography variant="header">6 Days</Typography>
             <Button variant="inverted">Pay</Button>
           </Card>
-        </div>
-      </div>
+        </Box>
+      </Container>
     </ThemeProvider>
   );
 };

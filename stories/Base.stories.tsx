@@ -1,24 +1,24 @@
 import React from "react";
-import { Base, BaseProps } from "../src";
+import { Box, BoxProps } from "../src";
 
 export default {
-  title: "Base",
+  title: "Box",
 };
 
-export const AsDiv = (props?: Partial<BaseProps<HTMLDivElement>>) => (
-  <Base {...props}>test Base</Base>
+export const AsDiv = (props?: Partial<BoxProps<HTMLDivElement>>) => (
+  <Box {...props}>test Box</Box>
 );
 
-export const AsDivWithUtilityProperties = (
-  props?: Partial<BaseProps<HTMLDivElement>>
-) => (
-  <Base className="bg-red-400" py={8} px={4} ml={2} mt={4} {...props}>
-    test Base
-  </Base>
+export const AsDivWithUtilityProperties = () => (
+  <Box className="bg-red-400 w-20" flex py={8} px={4} ml={2} mt={4}>
+    <Box grow={false}>1</Box>
+    <Box grow>2</Box>
+    <div>3</div>
+  </Box>
 );
 
-export const AsButton = (props?: Partial<BaseProps<HTMLButtonElement>>) => (
-  <Base as="button" onClick={() => console.log("click")} {...props}>
-    test Base
-  </Base>
+export const AsButton = () => (
+  <Box as="button" onClick={() => console.log("click")}>
+    test Box
+  </Box>
 );
